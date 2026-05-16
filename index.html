@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily Optimization Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Daily Stack Tracker</p>
+          <h1>Daily Optimization Dashboard</h1>
+        </div>
+        <div class="today-card">
+          <span id="dateLabel"></span>
+          <strong id="progressLabel">0/0 done</strong>
+        </div>
+      </header>
+
+      <section class="summary" aria-label="Daily status">
+        <div>
+          <span>Done</span>
+          <strong id="doneCount">0</strong>
+        </div>
+        <div>
+          <span>Left</span>
+          <strong id="leftCount">0</strong>
+        </div>
+        <div>
+          <span>Upcoming</span>
+          <strong id="upcomingLabel">Now</strong>
+        </div>
+      </section>
+
+      <nav class="tabs" aria-label="Dashboard views">
+        <button class="tab active" type="button" data-view="today">Today</button>
+        <button class="tab" type="button" data-view="weekly">Weekly</button>
+        <button class="tab" type="button" data-view="all">All</button>
+      </nav>
+
+      <section id="todayView" class="view active" aria-label="Today">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Done</th>
+                <th>Name</th>
+                <th>Time</th>
+                <th>Category</th>
+                <th>Frequency</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody id="todayRows"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="weeklyView" class="view" aria-label="Weekly">
+        <div class="split">
+          <section class="panel">
+            <div class="panel-heading">
+              <h2>Weekly</h2>
+              <span>Same day each week</span>
+            </div>
+            <div id="weeklyRows" class="stack-list"></div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-heading">
+              <h2>Sunday Reset</h2>
+              <span>Quick supply check</span>
+            </div>
+            <div id="resetRows" class="reset-list"></div>
+          </section>
+        </div>
+      </section>
+
+      <section id="allView" class="view" aria-label="All items">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Done</th>
+                <th>Name</th>
+                <th>Time</th>
+                <th>Category</th>
+                <th>Frequency</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody id="allRows"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
