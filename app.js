@@ -14,6 +14,13 @@ const stackItems = [
     notes: "AM injection",
   },
   {
+    name: "Coffee",
+    time: "6:15 AM",
+    category: "Foundation",
+    frequency: "Daily",
+    notes: "Morning coffee",
+  },
+  {
     name: "Tru Niagen",
     time: "6:15 AM",
     category: "NAD",
@@ -49,8 +56,22 @@ const stackItems = [
     notes: "With lunch",
   },
   {
+    name: "Lunch",
+    time: "12:00 PM",
+    category: "Foundation",
+    frequency: "Daily",
+    notes: "First meal / lunch",
+  },
+  {
+    name: "LMNT",
+    time: "12:00 PM",
+    category: "Foundation",
+    frequency: "Daily",
+    notes: "Water + electrolytes",
+  },
+  {
     name: "Metagenics Protein",
-    time: "Midday",
+    time: "12:00 PM",
     category: "Protein",
     frequency: "As Needed",
     notes: "Protein target support",
@@ -70,6 +91,20 @@ const stackItems = [
     notes: "Night injection",
   },
   {
+    name: "Dinner",
+    time: "7:00 PM",
+    category: "Foundation",
+    frequency: "Daily",
+    notes: "Evening meal",
+  },
+  {
+    name: "LMNT",
+    time: "7:00 PM",
+    category: "Foundation",
+    frequency: "Daily",
+    notes: "Water + electrolytes",
+  },
+  {
     name: "OptiMag 125",
     time: "11:00 PM",
     category: "Foundation",
@@ -78,7 +113,7 @@ const stackItems = [
   },
   {
     name: "Retatrutide",
-    time: "Weekly",
+    time: "7:00 PM Sundays",
     category: "Weekly",
     frequency: "Weekly",
     notes: "Same day each week",
@@ -99,14 +134,14 @@ const timeOrder = {
   "6:15 AM": 2,
   "12:00 PM": 3,
   Midday: 4,
-  "11:00 PM": 5,
-  Weekly: 6,
+  "7:00 PM": 5,
+  "11:00 PM": 6,
+  "7:00 PM Sundays": 7,
 };
 
 const today = new Date();
 const dateKey = today.toISOString().slice(0, 10);
 const weekKey = getWeekKey(today);
-const isWeekday = today.getDay() >= 1 && today.getDay() <= 5;
 
 const dailyStateKey = `daily-stack:${dateKey}`;
 const weeklyStackStateKey = `weekly-stack:${weekKey}`;
@@ -116,7 +151,7 @@ let weeklyStackState = readState(weeklyStackStateKey);
 let weeklyState = readState(weeklyStateKey);
 
 const todayItems = stackItems
-  .filter((item) => item.frequency === "Daily" || (item.frequency === "M-F" && isWeekday))
+  .filter((item) => item.frequency === "Daily" || item.frequency === "M-F")
   .sort((a, b) => timeOrder[a.time] - timeOrder[b.time] || a.name.localeCompare(b.name));
 
 const allItems = [...stackItems].sort(
